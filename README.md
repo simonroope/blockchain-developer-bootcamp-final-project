@@ -10,7 +10,7 @@ The market price of a bond depends on a number of factors: the credit quality of
 
 
 ### Why decentralise?
-* The most common process for issuing bonds is through underwriting. When a bond issue is underwritten, one or more securities firms or banks, form a syndicate, buy the entire issue of bonds from the issuer and resell them to investors. Decentralisation will create greater flexibility between issuer and investor and lower the cost of entry.
+* The most common process for issuing bonds is through underwriting. When a bond issue is underwritten, one or more securities firms or banks, form a syndicate, buy the entire issue of bonds from the issuer and resell them to investors. Decentralisation will allow all market participants to buy and sell assets and at more competitive rates.
 * Bonds can be bought and sold in the “secondary market” after they are issued. Most are traded over-the-counter (OTC) between large broker-dealers acting on their clients' or their own behalf. A decentralised market place will broaden bond ownership and enhance bond liquidity.
 
 
