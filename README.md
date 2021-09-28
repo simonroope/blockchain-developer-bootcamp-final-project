@@ -15,6 +15,7 @@ The market price of a bond depends on a number of factors: the credit quality of
 
 
 ### Attributes of a Bond
+* Issuer:
 * Face value: is the money amount the bond will be worth at maturity.
 * The coupon rate: is the rate of interest the bond issuer will pay on the face value of the bond, expressed as a percentage.
 * Coupon dates: are the dates on which the bond issuer will make interest payments. Payments can be made in any interval, but the standard is semiannual payments.
