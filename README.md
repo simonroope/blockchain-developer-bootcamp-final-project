@@ -27,8 +27,9 @@ The market price of a bond depends on a number of factors: the credit quality of
 * Issue bond: transfer NFT from issuer to investor in exchange for issue price amount. 
 * Make coupon payments: pay borrower interest on specified dates.
 * Bond matures: principal amount is paid back in full by issuer to bond holder.
+* Bond defaults: the bond issuer fails to make coupon payments within the specified period.
 
 
-### Factors for consideration ahead of inclusion in the project
-* Bond rating: Ratings agencies assign bond ratings to bonds and bond issuers, based on their creditworthiness. For the inclusion in collateralised debt how, over its duration, will changing credit ratings be tagged to the underlying bond record?   
+### Factors for consideration
+* Bond rating: Ratings agencies assign bond ratings to bonds and bond issuers, based on their creditworthiness. Over its duration, the credit rating of a bond may change and this change needs to be recorded on-chain. This information is key for the inclusion of a bond in collateralised debt.   
 * Bond currency: can trades and interest payments be made in multiple cryptocurrencies, inc stablecoins?
