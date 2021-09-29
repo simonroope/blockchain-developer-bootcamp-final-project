@@ -1,7 +1,7 @@
 # blockchain-developer-bootcamp-final-project
 
 ## Project Idea
-To create decentralised fixed income bonds, each constituted as an NFT. 
+To create decentralised fixed income bonds, each represented as an NFT. 
 
 
 ### What Is a Bond?
@@ -10,7 +10,7 @@ The market price of a bond depends on a number of factors: the credit quality of
 
 
 ### Why decentralise?
-* The most common process for issuing bonds is through underwriting. When a bond issue is underwritten, one or more securities firms or banks, form a syndicate, buy the entire issue of bonds from the issuer and resell them to investors. Decentralisation will allow all market participants to buy and sell assets and at more competitive rates.
+* The most common process for issuing bonds is through underwriting. When a bond issue is underwritten, one or more securities firms or banks, form a syndicate, buy the entire issue of bonds from the issuer and resell them to investors. Decentralisation will not limit access and will allow all market participants to issue and buy assets and at more competitive rates.
 * Bonds can be bought and sold in the “secondary market” after they are issued. Most are traded over-the-counter (OTC) between large broker-dealers acting on their clients' or their own behalf. A decentralised market place will broaden bond ownership and enhance bond liquidity.
 
 
@@ -27,10 +27,10 @@ The market price of a bond depends on a number of factors: the credit quality of
 * Create bonds: mint NFT.
 * Issue bond: transfer NFT from issuer to investor in exchange for issue price amount. 
 * Make coupon payments: pay borrower interest on specified dates.
-* Bond matures: principal amount is paid back in full by issuer to bond holder.
 * Bond defaults: the bond issuer fails to make coupon payments within the specified period.
+* Bond matures: principal amount is paid back in full by issuer to bond holder.
 
 
 ### Factors for consideration
-* Bond rating: Ratings agencies assign bond ratings to bonds and bond issuers, based on their creditworthiness. Over its duration, the credit rating of a bond may change and this change needs to be recorded on-chain. This information is key for the inclusion of a bond in collateralised debt.   
+* Bond rating: Ratings agencies assign bond ratings to bonds and bond issuers, based on their creditworthiness. Over its duration, the credit rating of a bond may change and this historical change needs to be recorded on-chain. This information is key for a bond's inclusion in collateralised debt obligations.   
 * Bond currency: can trades and interest payments be made in multiple cryptocurrencies, inc stablecoins?
