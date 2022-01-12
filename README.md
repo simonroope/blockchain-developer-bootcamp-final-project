@@ -34,3 +34,89 @@ The market price of a bond depends on a number of factors: the credit quality of
 ### Factors for consideration
 * Bond rating: Ratings agencies assign bond ratings to bonds and bond issuers, based on their creditworthiness. Over its duration, the credit rating of a bond may change and this historical change needs to be recorded on-chain. This information is key for a bond's inclusion in collateralised debt obligations.   
 * Bond currency: can trades and interest payments be made in multiple cryptocurrencies, inc stablecoins?
+
+
+
+
+# Final Project : Issue, Buy and Sell Fixed Income Bonds
+
+## Deployed version url
+https://final-project-sroope.netlify.app
+
+## Project description
+This Dapp is an exchange to issue, buy and sell Fixed Income Bonds. Users are able to issue Bonds (with attributes of their choice) and list them for sale. The currency to trade bonds is Dai (MockDai on testnets).  
+
+The contracts are deployed and verified on the Rinkeby testnet at:
+* MockDai: 0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3
+* BondToken: 0xcE8022d0a982fC65cb66e43fa49e99387Bda38Ca
+* BondMarket: 0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3
+
+## How to run this project locally
+To run the DApp in a local environment, the following dependencies are required:
+
+* Node v14.15.0
+    * download Node: https://nodejs.org/en/download/
+* Truffle v5.4.17
+    * Truffle: npm i -g truffle
+    * HDWallet provider: npm i @truffle/hdwallet-provider
+    * Ganache-cli: npm i ganache-cli
+    * Open-zeppelin contracts and libraries: npm i @openzeppelin/contracts
+    * Open-zeppelin test helpers: npm i @openzeppelin/test-helpers
+
+* Web3:
+    * Web3 Connector: npm i @web3-react/core @web3-react/injected-connector
+    * ethers: npm i ethers
+
+* Front End:
+    * React: npm i -g react
+    * Bootstrap: npm i bootstrap
+    * React-bootstrap: npm i react-bootstrap
+    * node-sass: npm i node-sass
+    * dayjs: npm i dayjs
+
+* Utils .env file: npm i dotenv
+
+Install metamask wallet in your browser.
+
+Clone the repository https://github.com/simonroope/blockchain-developer-bootcamp-final-project.git
+
+Run cd blockchain-developer-bootcamp-final-project-master which is the root directory
+
+Run npm install to install all the dependencies in the package.json file (Truffle build and smart contract dependencies)
+
+Run local testnet in port 8545 with an Ethereum client, e.g. Ganache
+
+Deploy the smart contracts to the local testnet: truffle migrate --network develop
+
+Run Truffle tests in main directory: truffle test --network develop  BondMarket.js conducts 14 unit tests.
+
+Launch the user interface via port: 3000 by running the following command 'npm run start' in the client subfolder of the root directory.
+
+Access the user interface via http://localhost:3000
+
+Connect your Metamask wallet and start interacting with the app.
+
+#### You may also choose to interact with the Bond contract via [Etherscan Rinkeby](https://rinkeby.etherscan.io/address/0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3).
+
+## Directory structure
+* client: Project's React frontend.
+* contracts: Smart contracts that are deployed in the Rinkeby testnet.
+* migrations: Migration files for deploying contracts in contracts directory.
+* test: Tests for smart contracts.
+
+Environment variables (not needed for running project locally): RINKEBY_RPC_URL='' & SEED_PHRASE=''
+
+## Simple workflow
+* Enter service web site
+* Login with Metamask
+* Deposit Dai into the account's wallet. Dai is the currency used to purchase bonds. The deposit request will mint and then approve the token spend by the main contract, so two transaction signatures are required.
+* Buy a bond from the list of bonds available. Sufficient funds (Dai) are required.
+* Issue a new bond.
+* Approve the sale (i.e. token transfer) of the bond, by the main contract, to a prospective buyer.
+* Switch user account, deposit sufficient Dai into this account's wallet and buy the newly created bond. 
+
+## Screencast link
+https://www.youtube.com/tbc
+
+## Ethereum account (for NFT certification)
+0x60540eF74555419AfaeF0FE62de6c5d9C92f51B8
