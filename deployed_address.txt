@@ -1,0 +1,6 @@
+// This file contains the deployed testnet address and network where contacts have been deployed.
+Contracts has been deployed on Rinkeby testnet.
+
+Dai: 0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3
+BondToken: 0xcE8022d0a982fC65cb66e43fa49e99387Bda38Ca
+BondMarket: 0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3
