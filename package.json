@@ -1,19 +1,25 @@
 {
-  "name": "bond",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.0",
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "@truffle/hdwallet-provider": "^2.0.0",
+    "dotenv": "^11.0.0",
+    "truffle": "^5.4.23"
+  },
+  "name": "bondv12",
   "version": "1.0.0",
-  "description": "",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
+  "devDependencies": {
+    "mocha": "^8.1.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.4.1",
-    "@openzeppelin/test-helpers": "^0.5.15"
-  }
+  "description": ""
 }
