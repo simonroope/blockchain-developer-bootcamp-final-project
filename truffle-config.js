@@ -18,10 +18,10 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+  require('dotenv').config({ path: './.env' });
+  const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+  const path = require('path');
 
 module.exports = {
   /**
@@ -33,6 +33,8 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
+
+  contracts_build_directory: path.join(__dirname, "client/src/contracts"),
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -46,6 +48,19 @@ module.exports = {
     //  port: 8545,            // Standard Ethereum port (default: none)
     //  network_id: "*",       // Any network (default: none)
     // },
+     develop: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+     },
+     rinkeby: {
+      timeoutBlocks: 200000,
+      networkCheckTimeout: 10000, 
+      provider: () => new HDWalletProvider(process.env.SEED_PHRASE, process.env.RINKEBY_RPC_URL),
+      network_id: 4,
+      skipDryRun: true
+    },
+ 
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -81,7 +96,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.10",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.10",       // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
