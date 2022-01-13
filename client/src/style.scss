@@ -1,3 +1,25 @@
-$body-bg: #f9f3ff;
+$body-bg: #f9f3ff;   // lavender
+
+$font-size-base: 1rem;
+$font-size-we: $font-size-base * .75;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.container {
+  max-width: 960px;
+}
+
+.bond-header {
+  max-width: 700px;
+}
+
+.table-small {
+  max-width: 960px;
+  font-size: $font-size-we;
+}
+
+.button-size {
+    min-width: 200px;
+    max-width: 200px;
+}
+
