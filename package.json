@@ -6,7 +6,7 @@
     "dotenv": "^11.0.0",
     "truffle": "^5.4.23"
   },
-  "name": "bondv12",
+  "name": "bond",
   "version": "1.0.0",
   "main": "truffle-config.js",
   "directories": {
@@ -16,7 +16,8 @@
     "mocha": "^8.1.2"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "postinstall": "cd client && npm install"
   },
   "keywords": [],
   "author": "",
