@@ -13,7 +13,6 @@ const useEth = () => {
 
       const balance = await library.getBalance(account);
 
-      // better to do safe math operations
       setEthBalance(parseFloat(formatEther(balance)).toPrecision(4));
     } else {
       console.log('else: ');
