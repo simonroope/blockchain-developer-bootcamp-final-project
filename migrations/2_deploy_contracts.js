@@ -15,10 +15,6 @@ module.exports = async function (deployer, network, accounts) {
   await deployer.deploy(BondMarket,bondToken.address,dai.address);
   const bondMarket = await BondMarket.deployed();
 
-  console.log(`BondToken: ${bondToken.address}`);
-  console.log(`dai: ${dai.address}`);
-  console.log(`BondMarket: ${bondMarket.address}`);
-
   await dai.mint(accounts[0],ethers.utils.parseUnits('200',18));
   await dai.mint(accounts[1],ethers.utils.parseUnits('110.67',18));  // 110 ETH
 
