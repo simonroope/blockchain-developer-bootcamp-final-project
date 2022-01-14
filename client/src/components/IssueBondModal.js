@@ -43,7 +43,9 @@ const IssueBondForm = ({ bondMarketAddress }) => {
                                                        ethers.utils.parseEther(faceValue),
                                                        { from: account } );
       await transaction.wait();
-      console.log(`transaction hash: ${transaction.hash}`);
+      // console.log(`transaction hash: ${transaction.hash}`);
+      window.location.reload();
+
     } catch (e) {
       console.log(`error ${e.message}`);
     }

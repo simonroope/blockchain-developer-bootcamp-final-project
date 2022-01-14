@@ -4,7 +4,6 @@ import { AppContextProvider } from './AppContext';
 import { ethers } from 'ethers';
 
 import Header from './components/Header';
-import DepositDaiModal from './components/DepositDaiModal';
 import Title from './components/Title';
 import Bond from './components/Bond';
 import BondOptions from './components/BondOptions';

@@ -4,31 +4,20 @@ import dayjs from 'dayjs';
 import { ethers } from 'ethers';
 
 import { useContract } from '../hooks/useContract';
-import { useBondMarketAddress } from '../hooks/useBondMarketAddress';
 
+import { useBondMarketAddress } from '../hooks/useBondMarketAddress';
 import BondMarket from '../contracts/BondMarket.json';
 
 import { shortAddress } from '../utils/ethAddressUtils';
 
-import { useDaiAddress } from '../hooks/useDaiAddress';
-import Dai from '../contracts/Dai.json';
-
-import IssueBondModal from './IssueBondModal';
-import ApproveBondModal from './ApproveBondModal';
 
 const BondListing = ({ bondMarketAddress }) => {
 
   const { account, chainId } = useWeb3React();
+
   const bondMarket = useContract(bondMarketAddress, BondMarket.abi);
+
   const [listing, setListing] = useState([]);
-
-  //  const { daiAddress } = useDaiAddress();
-
-  // Rinkeby
-  // const daiAddress = '0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3';
-  const daiAddress = (chainId) == 4 ? '0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3' : '0xE38d56E19a986bFB3DdaB77D17921Cccac6666F2';
-
-  const dai = useContract(daiAddress, Dai.abi);
 
   const buyBond = async ( bondId, salePrice ) => {
 
@@ -41,8 +30,7 @@ const BondListing = ({ bondMarketAddress }) => {
       console.log(`error ${e.message}`);
     }
 
-    const listing = await bondMarket.getBonds();
-    setListing(listing);
+    window.location.reload();
   };
 
   useEffect(() => {

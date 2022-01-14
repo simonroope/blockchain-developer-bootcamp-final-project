@@ -11,7 +11,7 @@ const BalancesCard = () => {
 
   const { account } = useWeb3React();
   const { ethBalance, fetchEthBalance } = useEth();
-  const { fetchCTokenBalance, cTokenBalance, deposit } = useCToken();
+  const { fetchCTokenBalance, cTokenBalance } = useCToken();
 
   useEffect(() => {
 

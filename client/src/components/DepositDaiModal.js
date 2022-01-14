@@ -14,6 +14,7 @@ import Dai from '../contracts/Dai.json';
 import { useBondMarketAddress } from '../hooks/useBondMarketAddress';
 import BondMarket from '../contracts/BondMarket.json';
 
+
 const DepositDaiForm = ({ daiAddress, bondMarketAddress }) => {
 
   const { active, account, chainId } = useWeb3React();
@@ -44,10 +45,11 @@ const DepositDaiForm = ({ daiAddress, bondMarketAddress }) => {
 
     try {
 
-      const txnMint = await dai.mint(account,ethers.utils.parseEther(amount.toString()));
-      await txnMint.wait(1);
+      const txnApp = await dai.approve(bondMarket.address, ethers.utils.parseEther(amount.toString()),{from: account});
+      await txnApp.wait();
 
-      dai.approve( bondMarket.address, ethers.utils.parseEther(amount.toString()), {from: account});
+      const txnMint = await dai.mint(account,ethers.utils.parseEther(amount.toString()));
+      await txnMint.wait();
 
     } catch (e) {
       console.log(`error ${e.message}`);
@@ -61,7 +63,9 @@ const DepositDaiForm = ({ daiAddress, bondMarketAddress }) => {
 
     e.preventDefault();
     depositDai(values.daiAmount);
+
     handleClose();
+
   };
 
   return (
