@@ -24,7 +24,7 @@ The market price of a bond depends on a number of factors: the credit quality of
 * Face value: is the money amount the bond will be worth at maturity.
 
 ### Workflow
-* Create bonds: mint NFT.
+* Create bonds: mint NFT
 * Issue bond: transfer NFT from issuer to investor in exchange for issue price amount. 
 * Make coupon payments: pay borrower interest on specified dates.
 * Bond defaults: the bond issuer fails to make coupon payments within the specified period.
@@ -82,21 +82,26 @@ Clone the repository https://github.com/simonroope/blockchain-developer-bootcamp
 
 Run cd blockchain-developer-bootcamp-final-project-master which is the root directory
 
-Run npm install to install all the dependencies in the package.json file (Truffle build and smart contract dependencies)
+Run `npm install` to install all the dependencies in the package.json file (Truffle build and smart contract dependencies)
 
 Run local testnet in port 8545 with an Ethereum client, e.g. Ganache
 
-Deploy the smart contracts to the local testnet: truffle migrate --network develop
+Deploy the smart contracts to the local testnet: `truffle migrate --network develop`
 
-Run Truffle tests in main directory: truffle test --network develop  BondMarket.js conducts 14 unit tests.
+In the file that creates the Dai contract instance change the address that references the Dai contract to be the locally deployed Dai address.
+* In `localproject/client/src/hooks/useCToken.js line 18` change
+`const daiAddress = '0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3';`
+to `const daiAddress = '0x????????? Local Dai Address ????????????';`
 
-Launch the user interface via port: 3000 by running the following command 'npm run start' in the client subfolder of the root directory.
+Run Truffle tests in main directory: `truffle test --network develop`  BondMarket.js conducts 14 unit tests.
+
+Launch the user interface via port: 3000 by running the following command `npm run start` in the client subfolder of the root directory.
 
 Access the user interface via http://localhost:3000
 
 Connect your Metamask wallet and start interacting with the app.
 
-#### You may also choose to interact with the Bond contract via [Etherscan Rinkeby](https://rinkeby.etherscan.io/address/0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3).
+**You may also choose to interact with the Bond contract via [Etherscan Rinkeby](https://rinkeby.etherscan.io/address/0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3)**
 
 ## Directory structure
 * client: Project's React frontend.
@@ -110,7 +115,7 @@ Environment variables (not needed for running project locally): RINKEBY_RPC_URL=
 * Enter service web site
 * Login with Metamask
 * Deposit Dai into the account's wallet. Dai is the currency used to purchase bonds. The deposit request will mint and then approve the token spend by the main contract, so two transaction signatures are required.
-* Buy a bond from the list of bonds available. Sufficient funds (Dai) are required.
+* Buy a bond from the list of bonds available. Sufficient funds (Dai) need to have beed deposited.
 * Issue a new bond.
 * Approve the sale (i.e. token transfer) of the bond, by the main contract, to a prospective buyer.
 * Switch user account, deposit sufficient Dai into this account's wallet and buy the newly created bond. 
