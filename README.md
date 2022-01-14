@@ -47,9 +47,9 @@ https://final-project-sroope.netlify.app
 This Dapp is an exchange to issue, buy and sell Fixed Income Bonds. Users are able to issue Bonds (with attributes of their choice) and list them for sale. The currency to trade bonds is Dai (MockDai on testnets).  
 
 The contracts are deployed and verified on the Rinkeby testnet at:
-* MockDai: 0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3
-* BondToken: 0xcE8022d0a982fC65cb66e43fa49e99387Bda38Ca
-* BondMarket: 0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3
+* MockDai: 0xdCF691A9A6f6b4141f8a9780F322BB5A4f0f6192
+* BondToken: 0x0ca28511510dF21e9b29D931a3C433ED20Ef91D0
+* BondMarket: 0xf6AE48e89269083aEae4964Bf770e4575CB924A4
 
 ## How to run this project locally
 To run the DApp in a local environment, the following dependencies are required:
@@ -88,12 +88,13 @@ Run local testnet in port 8545 with an Ethereum client, e.g. Ganache
 
 Deploy the smart contracts to the local testnet: `truffle migrate --network develop`
 
-In the file that creates the Dai contract instance change the address that references the Dai contract to be the locally deployed Dai address.
-* In `localproject/client/src/hooks/useCToken.js line 18` change
-`const daiAddress = '0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3';`
-to `const daiAddress = '0x????????? Local Dai Address ????????????';`
-
 Run Truffle tests in main directory: `truffle test --network develop`  BondMarket.js conducts 14 unit tests.
+
+The frontend must access the locally deployed Dai contract. In the Javascript file that creates the Dai contract instance change the address that references the Dai contract to be the locally deployed Dai address.
+* In `localproject/client/src/hooks/useCToken.js line 18` change
+`const daiAddress = '0xdCF691A9A6f6b4141f8a9780F322BB5A4f0f6192';`
+to
+`const daiAddress = '0x????????? Local Dai Address ????????????';`
 
 Launch the user interface via port: 3000 by running the following command `npm run start` in the client subfolder of the root directory.
 
@@ -101,7 +102,7 @@ Access the user interface via http://localhost:3000
 
 Connect your Metamask wallet and start interacting with the app.
 
-**You may also choose to interact with the Bond contract via [Etherscan Rinkeby](https://rinkeby.etherscan.io/address/0x8C61500b0357507c3Bf240d6c45F06bB6bbaB3E3)**
+**You may also choose to interact with the Bond contract via [Etherscan Rinkeby](https://rinkeby.etherscan.io/address/0xf6AE48e89269083aEae4964Bf770e4575CB924A4)**
 
 ## Directory structure
 * client: Project's React frontend.

@@ -5,16 +5,17 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import './BondToken.sol';
 
-// @author Simon Roope
-// @title  Fixed Income Bond NFT market place.
-// @notice The contract used to issue, trade, make coupon and maturity payments of Fixed Income Bonds.
+/// @author Simon Roope
+/// @title  Fixed Income Bond NFT market place.
+/// @notice The contract used to issue, trade, make coupon and maturity payments of Fixed Income Bonds.
 
 contract BondMarket is AccessControl {
  
-  IERC20 public dai;           // @dev TODO: extend to use multiple currencies.
-  BondToken public bondToken;  // each bond has unique tokenId.
+  IERC20 public dai;           /// @dev TODO: extend to use multiple currencies.
+  BondToken public bondToken;  /// @dev Each bond has unique tokenId.
 
   bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
+  bytes32 public constant RATING_ROLE = keccak256("RATING_ROLE");
 
   Bond[] public allBonds; 
   BondTransaction[] public allBondTransactions;
@@ -26,16 +27,16 @@ contract BondMarket is AccessControl {
 
   struct Bond {
     uint bondId;
-    address issuer;      // issuer of bond, who pays coupons and face value on maturity.
+    address issuer;      /// @dev issuer of bond, who pays coupons and face value on maturity.
     uint issueDate;
     bytes32 name;
-    uint salePrice;      // price at which the bond issuer originally sells the bond.
-    uint couponRate;     // rate of interest the bond issuer will pay on the face value of the bond, expressed as %.
-    uint couponInterval; // interval between coupon payments, i.e. dates issuer will make interest payments. Biannually
-    uint maturityDate;   // date bond will mature and the bond issuer will pay the bondholder the face value of the bond.
-    uint faceValue;      // value of bond at maturity, stated when issued and paid by issuer to current bondholder on maturity.  
-    bool forSale;        // is bond for sale.
-    address holder;      // current holder of bond and recipient of coupon.
+    uint salePrice;      /// @dev price at which the bond issuer originally sells the bond.
+    uint couponRate;     /// @dev rate of interest the bond issuer will pay on the face value of the bond, expressed as %.
+    uint couponInterval; /// @dev interval between coupon payments, i.e. dates issuer will make interest payments. Biannually
+    uint maturityDate;   /// @dev date bond will mature and the bond issuer will pay the bondholder the face value of the bond.
+    uint faceValue;      /// @dev value of bond at maturity, stated when issued and paid by issuer to current bondholder on maturity.  
+    bool forSale;        /// @dev is bond for sale.
+    address holder;      /// @dev current holder of bond and recipient of coupon.
   }
 
   struct BondTransaction {
@@ -97,8 +98,8 @@ contract BondMarket is AccessControl {
                        uint _daysToMaturity,
                        uint _faceValue ) public {
 
-    // @notice Mint Bond NFT to Issuer
-    // @dev TODO: Create metadata tokenURI for upload to IPFS. Metadata is owner's certificate of ownership.  
+    /// @notice Mint Bond NFT to Issuer
+    /// @dev TODO: Create metadata tokenURI for upload to IPFS. Metadata is owner's certificate of ownership.  
 
     string memory bondCertificate = 'tokenURI - IPFS';
     uint bondId = bondToken.mint(msg.sender, bondCertificate);
@@ -112,7 +113,7 @@ contract BondMarket is AccessControl {
     bonds[bondId] = newBond;
     allBonds.push(newBond);
 
-    // @dev TODO: Bond Rating
+    /// @dev TODO: Add Bond Rating
 
     emit BondIssued ( msg.sender, bondId, newBond.issueDate, newBond.name, newBond.salePrice, 
                       newBond.couponRate, newBond.couponInterval, newBond.maturityDate, newBond.faceValue );
@@ -123,20 +124,23 @@ contract BondMarket is AccessControl {
   function getBond(uint _bondId) public view returns ( Bond memory ) {
     return bonds[_bondId];
 
-    // @dev or returns (address issuer) return(bonds[bondId].issuer);
-    // @dev or returns (address issuer) Bond storage bnd = bonds[bondId]; issuer = bnd.issuer; return issuer;
-    // @dev or returns (Bond memory) return bonds[_bondId];
+    /// @notice Retun a single bond 
+    /// @dev or returns (address issuer) return(bonds[bondId].issuer);
+    /// @dev or returns (address issuer) Bond storage bnd = bonds[bondId]; issuer = bnd.issuer; return issuer;
+    /// @dev or returns (Bond memory) return bonds[_bondId];
   }
 
 
   function getBonds() public view returns ( Bond[] memory ) {
+    /// @notice Retun all bonds 
     return allBonds; 
   }
 
 
   function offerBondForSale ( uint _bondId, uint _salePrice ) public bondExists(_bondId) isHolder(_bondId) {
 
-    // @dev TODO: grant approval for token transfer to this contract.
+    /// @notice Offer the bond for sale, at a specified price 
+    /// @dev TODO: grant approval for token transfer to this contract.
 
     bonds[_bondId].salePrice = _salePrice;
     bonds[_bondId].forSale = true;
@@ -149,15 +153,12 @@ contract BondMarket is AccessControl {
 
   function sellBond ( uint _bondId, address _buyer, uint _salePrice ) public bondExists(_bondId) isHolder(_bondId) {
   
-    // @notice First and all subsequent sales.
-    // @dev Sale price, in ETH, set by current owner. 
-    // TODO: Multiple currencies and transactions on Exchange. AMM
+    /// @notice First and all subsequent sales of a bond. Push.
+    /// @dev Sale price, in ETH, set by current owner. 
+    /// TODO: Multiple currencies and transactions on Exchange. AMM
 
     require(_buyer != address(0), 'buyer is the address zero');
     require(_buyer != address(this),'buyer is contract');
-
-    //require(btk.isApprovedForAll( bonds[_bondId].holder, address(this), 'ERC721: transfer caller is not owner nor approved' );  
-    //isApprovedOrOwner(bondMarket.address,0);
 
     require (bonds[_bondId].forSale == true, 'Bond is not for sale');
     require (bonds[_bondId].salePrice == _salePrice, 'Incorrect Sale Price');
@@ -172,7 +173,8 @@ contract BondMarket is AccessControl {
 
     dai.transferFrom(_buyer, seller, _salePrice);    
 
-    // NFT ownership. TODO: delegatecall for approval when minted
+    /// @dev Transfer NFT ownership.
+    /// @dev TODO: Incorporate delegatecall for approval when minted
     bondToken.safeTransferFrom(seller, _buyer, _bondId);
 
     emit BondSold(_bondId, seller, _buyer, _salePrice);   // bondId, from, to, price
@@ -181,7 +183,7 @@ contract BondMarket is AccessControl {
 
   function buyBond ( uint _bondId, uint _salePrice ) public bondExists(_bondId) {
 
-    //require(btk.isApprovedForAll( bonds[_bondId].holder, address(this), 'ERC721: transfer caller is not owner nor approved' );  
+    /// @notice Purchase a bond at listed price. Pull.
     require (bonds[_bondId].forSale == true, 'Bond is not for sale');
     require (bonds[_bondId].salePrice == _salePrice, 'Incorrect Sale Price');
 
@@ -196,7 +198,8 @@ contract BondMarket is AccessControl {
 
     dai.transferFrom(msg.sender, seller, _salePrice);   
 
-    // NFT ownership. TODO: delegatecall for approval of token transfer when minted
+    /// @dev Transfer NFT ownership.
+    /// @dev TODO: Incorporate delegatecall for approval when minted
     bondToken.safeTransferFrom(seller, msg.sender, _bondId);
 
     address bondOwner = bondToken.ownerOf(_bondId);
@@ -208,15 +211,18 @@ contract BondMarket is AccessControl {
 
   function payCoupon ( uint _bondId ) public payable bondExists(_bondId) isIssuer(_bondId) {
 
-    // Calculate coupon amount
+    /// @notice Pay the coupon rate to the current holder.
+    /// @dev Payment is made every x days (i.e coupon interval)
+    /// @dev Function to be executed by scheduler 
+    /// @dev Calculate coupon amount
     uint couponAmount = bonds[_bondId].couponRate * bonds[_bondId].faceValue;
 
-    // Owner has sufficient funds or bond defaults.
+    /// @dev Owner has sufficient funds or bond defaults.
     require(bonds[_bondId].issuer.balance >= couponAmount,'Insufficient funds to pay coupon');
 
-    // TODO: Issuer defaults and no payment is made.
+    /// @dev TODO: Issuer defaults and no payment is made.
 
-    // Pay Coupon.
+    /// @dev Pay Coupon.
     address issuer = bonds[_bondId].issuer;
     address holder = bonds[_bondId].holder;
     dai.transferFrom(issuer, holder, couponAmount);
@@ -227,7 +233,10 @@ contract BondMarket is AccessControl {
 
   function bondMatures ( uint _bondId ) public payable isIssuer(_bondId) {
 
-    // TODO: Link to scheduler e.g. Chainlink 
+    /// @notice The bond matures and the maturity value is paid to the current holder.
+    /// @dev TODO: Link to scheduler e.g. Chainlink 
+
+    require(block.timestamp > bonds[_bondId].maturityDate,'Maturity date has not been reached');
 
     uint maturityAmount = bonds[_bondId].faceValue;
     uint maturityDate = bonds[_bondId].maturityDate;
@@ -235,10 +244,11 @@ contract BondMarket is AccessControl {
     address issuer = bonds[_bondId].issuer;
     address holder = bonds[_bondId].holder;
 
-    // Approve first
+    /// @dev Transfer to be approved first
     dai.transferFrom(issuer, holder, maturityAmount);
 
-    // _burn token TODO: tbc if NFT is soft delete or burnt. 
+    /// @dev Take bond out of circulation
+    /// @dev TODO: tbc if NFT is soft delete or burnt. Incorporate removeBond() below. 
     delete bonds[_bondId];
     delete allBonds[_bondId];  // or allBonds.splice(bondId,1);
 
@@ -246,8 +256,10 @@ contract BondMarket is AccessControl {
   }
 
 
-  function changeRating ( uint _bondId, bytes32 _toRating ) public {
+  function changeRating ( uint _bondId, bytes32 _toRating ) public onlyRole(RATING_ROLE) {
   
+    /// @notice The bond rating is changed.
+    /// @dev This function can only be performed by authorised users. 
     bondRatings[_bondId][0].rating = _toRating;
     bondRatings[_bondId][0].ratingDate = block.timestamp;
 
@@ -257,17 +269,18 @@ contract BondMarket is AccessControl {
 
   function removeBond(uint _bondId) public onlyRole(BURNER_ROLE) {
 
-    // @notice Remove a bond listing
-    // @dev Only the contract owner can call this function
+    /// @notice Remove a bond listing
+    /// @dev Only the contract owner can call this function
 
-    // TODO: remove a bond listing entirely; _burn & delete
-    // _burn token
-    // delete bonds[_bondId];
+    /// TODO: remove a bond listing entirely; _burn & delete
+    /// _burn token
+    /// delete bonds[_bondId];
   }
 
 
   function bondHierarchy ( uint _bondId, uint _parentBondId ) public {
-    // TODO: Create bond hierarchy for collaterialised debt.
+    /// @notice Create bond hierarchy for collaterialised debt.
+    /// @dev TODO
   }
 
 }

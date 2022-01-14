@@ -15,7 +15,7 @@ export const useCToken = () => {
   const { isValidNetwork } = useIsValidNetwork();
 
   // Rinkeby (and other test networks) Dai is fixed address 
-  const daiAddress = '0x918Fd7cc2F6B6528B443B8C3ffAeF025551f3eb3';
+  const daiAddress = '0xdCF691A9A6f6b4141f8a9780F322BB5A4f0f6192';
 
   const cTokenContract = useContract(daiAddress, dai.abi);
 
