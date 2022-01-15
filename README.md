@@ -122,7 +122,7 @@ Environment variables (not needed for running project locally): RINKEBY_RPC_URL=
 * Switch user account, deposit sufficient Dai into this account's wallet and buy the newly created bond. 
 
 ## Screencast link
-https://www.youtube.com/tbc
+https://www.loom.com/share/22c3ee9c88ef40db9595984027b64779
 
 ## Ethereum account (for NFT certification)
 0x60540eF74555419AfaeF0FE62de6c5d9C92f51B8
