@@ -41,7 +41,8 @@ The market price of a bond depends on a number of factors: the credit quality of
 # Final Project : Issue, Buy and Sell Fixed Income Bonds
 
 ## Deployed version url
-https://final-project-sroope.netlify.app
+https://fib-bondmarket.netlify.app
+
 
 ## Project description
 This Dapp is an exchange to issue, buy and sell Fixed Income Bonds. Users are able to issue Bonds (with attributes of their choice) and list them for sale. The currency to trade bonds is Dai (MockDai on testnets).  
