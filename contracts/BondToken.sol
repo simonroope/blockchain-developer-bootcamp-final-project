@@ -63,12 +63,12 @@ contract BondToken is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Acce
       _unpause();
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
         internal
         whenNotPaused
         override(ERC721, ERC721Enumerable)
     {
-        super._beforeTokenTransfer(from, to, tokenId);
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 
     function isApprovedOrOwner(address spender, uint256 tokenId) public view returns (bool) {

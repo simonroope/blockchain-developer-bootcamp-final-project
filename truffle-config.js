@@ -44,22 +44,30 @@ module.exports = {
     // options below to some value.
     //
     // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
+    //   host: "127.0.0.1",     // Localhost (default: none)
+    //   port: 8545,            // Standard Ethereum port (default: none)
+    //   network_id: 5777,       // Any network (default: none)
     // },
-     develop: {
-      host: "127.0.0.1",     // Localhost (default: none)
+    develop: {
+      host: "localhost",     // Localhost (default: none)
       port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
-     },
-     rinkeby: {
+    },
+    rinkeby: {
       timeoutBlocks: 200000,
       networkCheckTimeout: 10000, 
-      provider: () => new HDWalletProvider(process.env.SEED_PHRASE, process.env.RINKEBY_RPC_URL),
+      provider: () => new HDWalletProvider(process.env.RINKEBY_SEED_PHRASE, process.env.RINKEBY_RPC_URL),
       network_id: 4,
       skipDryRun: true
     },
+    goerli: {
+      timeoutBlocks: 200000,
+      networkCheckTimeout: 10000, 
+      provider: () => new HDWalletProvider(process.env.GOERLI_WALLET_SEED, process.env.GOERLI_RPC_URL),
+      network_id: 5,
+      skipDryRun: true
+    },
+
  
     // Another network with more advanced options...
     // advanced: {

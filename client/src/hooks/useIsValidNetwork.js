@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useWeb3React } from '@web3-react/core';
 
-const supportedCompNetworks = [1,4,42,1337,5777];
+const supportedCompNetworks = [1,4,5,42,1337,5777];
 
 function useIsValidNetwork() {
   const { chainId } = useWeb3React();

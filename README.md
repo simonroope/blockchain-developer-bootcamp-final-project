@@ -46,17 +46,17 @@ https://final-project-sroope.netlify.app
 ## Project description
 This Dapp is an exchange to issue, buy and sell Fixed Income Bonds. Users are able to issue Bonds (with attributes of their choice) and list them for sale. The currency to trade bonds is Dai (MockDai on testnets).  
 
-The contracts are deployed and verified on the Rinkeby testnet at:
-* MockDai: 0xdCF691A9A6f6b4141f8a9780F322BB5A4f0f6192
-* BondToken: 0x0ca28511510dF21e9b29D931a3C433ED20Ef91D0
-* BondMarket: 0xf6AE48e89269083aEae4964Bf770e4575CB924A4
+The contracts are deployed and verified on the Goerli testnet at:
+* MockDai: 0x575fb509b5504CB8CE5c0639E60C3d2ac3a7D2Ae
+* BondToken: 0xa9e6Cd2a8a26BDC2738B9E9FCB37e318636C5bf2
+* BondMarket: 0x9541DE6a55BAe8494eeDC58C5387F61fb9810D71
 
 ## How to run this project locally
 To run the DApp in a local environment, the following dependencies are required:
 
-* Node v14.15.0
+* Node v16.19.0
     * download Node: https://nodejs.org/en/download/
-* Truffle v5.4.17
+* Truffle v5.7.2
     * Truffle: npm i -g truffle
     * HDWallet provider: npm i @truffle/hdwallet-provider
     * Ganache-cli: npm i ganache-cli
@@ -84,7 +84,7 @@ Run cd blockchain-developer-bootcamp-final-project-master which is the root dire
 
 Run `npm install` to install all the dependencies in the package.json file (Truffle build and smart contract dependencies)
 
-Run local testnet in port 8545 with an Ethereum client, e.g. Ganache
+Run local testnet on port 8545 with an Ethereum client, e.g. Ganache
 
 Deploy the smart contracts to the local testnet: `truffle migrate --network develop`
 
@@ -102,15 +102,15 @@ Access the user interface via http://localhost:3000
 
 Connect your Metamask wallet and start interacting with the app.
 
-**You may also choose to interact with the Bond contract via [Etherscan Rinkeby](https://rinkeby.etherscan.io/address/0xf6AE48e89269083aEae4964Bf770e4575CB924A4)**
+**You may also choose to interact with the Bond contract via [Etherscan Goerli](https://goerli.etherscan.io/address/0x9541DE6a55BAe8494eeDC58C5387F61fb9810D71)**
 
 ## Directory structure
 * client: Project's React frontend.
-* contracts: Smart contracts that are deployed in the Rinkeby testnet.
+* contracts: Smart contracts that are deployed in the Goerli testnet.
 * migrations: Migration files for deploying contracts in contracts directory.
 * test: Tests for smart contracts.
 
-Environment variables (not needed for running project locally): RINKEBY_RPC_URL='' & SEED_PHRASE=''
+Environment variables (not needed for running project locally): GOERLI_RPC_URL='' & GOERLI_WALLET_SEED=''
 
 ## Simple workflow
 * Enter service web site

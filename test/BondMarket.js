@@ -226,7 +226,7 @@ contract("BondMarket", function (accounts) {
     assert.equal(isApprovedFA,false);
     assert.equal(isApprovedOO,false);
 
-    await expectRevert ( bondMarket.buyBond(0, ethers.utils.parseEther('35'), {from: bob} ),'ERC721: transfer caller is not owner nor approved.' );
+    await expectRevert ( bondMarket.buyBond(0, ethers.utils.parseEther('35'), {from: bob} ),'ERC721: caller is not token owner or approved.' );
 
   });
 
