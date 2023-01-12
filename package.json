@@ -15,7 +15,8 @@
     "test": "test"
   },
   "devDependencies": {
-    "mocha": "^8.1.2"
+    "mocha": "^8.1.2",
+    "truffle-plugin-verify": "^0.6.1"
   },
   "scripts": {
     "test": "mocha",

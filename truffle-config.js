@@ -17,7 +17,6 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-
   require('dotenv').config({ path: './.env' });
   const HDWalletProvider = require('@truffle/hdwallet-provider');
 
@@ -136,4 +135,10 @@ module.exports = {
     //   }
     // }
   // }
+
+  plugins: ['truffle-plugin-verify'],
+
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY,
+  },
 };
